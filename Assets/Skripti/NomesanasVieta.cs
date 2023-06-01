@@ -79,41 +79,41 @@ public class NomesanasVieta : MonoBehaviour,
 
 						case "Cement":
 						objektuSkripts.skanasAvots.PlayOneShot (
-							objektuSkripts.skanasKoAtskanot [4]);
+							objektuSkripts.skanasKoAtskanot [5]);
 						break;
 
 						case "e46":
 						objektuSkripts.skanasAvots.PlayOneShot (
-							objektuSkripts.skanasKoAtskanot [5]);
+							objektuSkripts.skanasKoAtskanot [6]);
 						break;
 
 						case "e61":objektuSkripts.skanasAvots.PlayOneShot (
-						objektuSkripts.skanasKoAtskanot [6]);
+						objektuSkripts.skanasKoAtskanot [7]);
 						break;
 
 						case "eskov":
 						objektuSkripts.skanasAvots.PlayOneShot (
-							objektuSkripts.skanasKoAtskanot [7]);
+							objektuSkripts.skanasKoAtskanot [8]);
 						break;
 							
 						case "pol" :
 						objektuSkripts.skanasAvots.PlayOneShot (
-							objektuSkripts.skanasKoAtskanot [8]);
+							objektuSkripts.skanasKoAtskanot [9]);
 						break;
 
 						case "trak1" :
 						objektuSkripts.skanasAvots.PlayOneShot (
-							objektuSkripts.skanasKoAtskanot [9]);
+							objektuSkripts.skanasKoAtskanot [10]);
 						break;
 
 						case "trak5" :
 						objektuSkripts.skanasAvots.PlayOneShot (
-							objektuSkripts.skanasKoAtskanot [10]);
+							objektuSkripts.skanasKoAtskanot [11]);
 						break;
 
 						case "uguns" :
 						objektuSkripts.skanasAvots.PlayOneShot (
-							objektuSkripts.skanasKoAtskanot [11]);
+							objektuSkripts.skanasKoAtskanot [12]);
 						break;
 					
 							default:
