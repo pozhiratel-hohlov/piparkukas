@@ -1,25 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//Jāieimportē, lai varētu lietot visus I interfeisus
 using UnityEngine.EventSystems;
 
-public class DragDropSkripts : MonoBehaviour, 
-    IPointerDownHandler, IBeginDragHandler, 
-    IDragHandler, IEndDragHandler {
-    //Uzglabā norādi uz Objekti skriptu
+public class DragDropSkripts : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
+{
     public Objekti objektuSkripts;
-    //Velkamam objektam piestiprinātā CanvasGoup komponente
     private CanvasGroup kanvasGrupa;
-    //Objekta atrašanās vieta, kurš tiek pārvietots
     private RectTransform velkObjRectTransf;
+    private int carsInPlace = 0;
+    public GameObject timePanel;
+   
+
 
     void Start()
     {
-        //Piekļūst objektam piestiprinātajai CanvasGroup
-        //komponentei
         kanvasGrupa = GetComponent<CanvasGroup>();
-        //Piekļūst objeta RectTransform komponentei
         velkObjRectTransf = GetComponent<RectTransform>();
     }
 
@@ -31,23 +27,22 @@ public class DragDropSkripts : MonoBehaviour,
         kanvasGrupa.blocksRaycasts = false;
     }
 
-    //Turpināsim no šīs vietas
     public void OnDrag(PointerEventData eventData)
     {
-        velkObjRectTransf.anchoredPosition +=
-        eventData.delta / objektuSkripts.kanva.scaleFactor; 
+        velkObjRectTransf.anchoredPosition += eventData.delta / objektuSkripts.kanva.scaleFactor;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        objektuSkripts.pedejaisVilktais =
-             eventData.pointerDrag;
+        objektuSkripts.pedejaisVilktais = eventData.pointerDrag;
         kanvasGrupa.alpha = 1f;
 
-        if(objektuSkripts.vaiIstajaVieta == false) {
+        if (objektuSkripts.vaiIstajaVieta == false)
+        {
             kanvasGrupa.blocksRaycasts = true;
-
-        } else {
+        }
+        else
+        {
             objektuSkripts.pedejaisVilktais = null;
         }
 
@@ -56,6 +51,6 @@ public class DragDropSkripts : MonoBehaviour,
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        
+
     }
 }

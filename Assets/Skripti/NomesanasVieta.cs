@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
 public class NomesanasVieta : MonoBehaviour, 
 	IDropHandler{
 	private float vietasZRot, velkObjZRot, rotacijasStarpiba;
@@ -10,8 +11,10 @@ public class NomesanasVieta : MonoBehaviour,
 	private float xIzmStarpiba, yIzmStarpiba;
 	public Objekti objektuSkripts;
 
+
     public void OnDrop(PointerEventData eventData)
     {
+
 		if (eventData.pointerDrag != null)
 		{
 			if (eventData.pointerDrag.tag.Equals(tag))
@@ -33,20 +36,26 @@ public class NomesanasVieta : MonoBehaviour,
 				velkObjIzm =
 					GetComponent<RectTransform>().localScale;
 
-				xIzmStarpiba = Mathf.Abs(vietasIzm.x - velkObjIzm.x);
-				yIzmStarpiba = Mathf.Abs(vietasIzm.y - velkObjIzm.y);
+                xIzmStarpiba = Mathf.Abs(vietasIzm.x - velkObjIzm.x);
+                yIzmStarpiba = Mathf.Abs(vietasIzm.y - velkObjIzm.y);
 
-				Debug.Log("Objektu rotācijas starpība: " + rotacijasStarpiba
-					+ "\nPlatuma starpība: " + xIzmStarpiba +
-					"\nAugstuma starpība: " + yIzmStarpiba);
+                Debug.Log("Rotācijas starpība: " + rotacijasStarpiba
+                    + "\nx starpība: " + xIzmStarpiba
+                    + "\ny starpība: " + yIzmStarpiba);
 
-
-				if ((rotacijasStarpiba <= 6 ||
-					(rotacijasStarpiba >= 354 && rotacijasStarpiba <= 360))
-					&& (xIzmStarpiba <= 0.1 && yIzmStarpiba <= 0.1))
-				{
+                if ((rotacijasStarpiba <= 6 ||
+                    (rotacijasStarpiba >= 354 &&
+                    rotacijasStarpiba <= 360)) &&
+                    (xIzmStarpiba <= 0.1 && yIzmStarpiba <= 0.1))
+                {
 					Debug.Log("Nomests pareizajā vietā!");
                     objektuSkripts.vaiIstajaVieta = true;
+					
+				//	carsInPlace++;
+				//	if (carsInPlace == objektuSkripts.totalcars)
+				//	{
+				//		GameManager.Instance.endGame();
+				//	}
                     eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition
 						= GetComponent<RectTransform>().anchoredPosition;
 
