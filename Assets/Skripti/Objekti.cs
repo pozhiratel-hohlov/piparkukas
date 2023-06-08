@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Objekti : MonoBehaviour {
+	public bool vaiIstajaVieta = false;
+	public GameObject pedejaisVilktais;
+	public int totalcars;
+	public int carsInPlace = 0;
+	public List<GameObject> cars;
 	public GameObject atkritumuMasina;
 	public GameObject atraPalidziba;
 	public GameObject autobuss;
@@ -45,32 +50,65 @@ public class Objekti : MonoBehaviour {
 	public AudioSource skanasAvots;
 	public AudioClip[] skanasKoAtskanot;
 
-	[HideInInspector]
-	public bool vaiIstajaVieta = false;
-
-	public GameObject pedejaisVilktais = null;
-
+	private Vector2[] startPositions; // Массив для хранения начальных позиций машинок
 
 	void Start() {
-		atkrMKoord =
-        atkritumuMasina.GetComponent<RectTransform>().localPosition;
-        
-		atrPKoord =
-        atraPalidziba.GetComponent<RectTransform>().localPosition;
+		// Получаем начальные позиции машинок
+		startPositions = new Vector2[] {
+			atkritumuMasina.GetComponent<RectTransform>().localPosition,
+			atraPalidziba.GetComponent<RectTransform>().localPosition,
+			autobuss.GetComponent<RectTransform>().localPosition,
+			b2.GetComponent<RectTransform>().localPosition,
+			CementaMasina.GetComponent<RectTransform>().localPosition,
+			e46.GetComponent<RectTransform>().localPosition,
+			e61.GetComponent<RectTransform>().localPosition,
+			Eskavators.GetComponent<RectTransform>().localPosition,
+			policija.GetComponent<RectTransform>().localPosition,
+			Traktors1.GetComponent<RectTransform>().localPosition,
+			Traktors5.GetComponent<RectTransform>().localPosition,
+			Ugunsdzeseji.GetComponent<RectTransform>().localPosition
+		};
+	}
 
-        bussKoord =
-		autobuss.GetComponent<RectTransform>().localPosition;
+	// Метод для перемещения машинок на свои места
+	public void ResetCars() {
+		for (int i = 0; i < startPositions.Length; i++) {
+			GameObject car = GetCarAtIndex(i);
+			if (car != null) {
+				car.GetComponent<RectTransform>().localPosition = startPositions[i];
+			}
+		}
+	}
 
-		b2Koord =
-			b2.GetComponent<RectTransform>().localPosition;
-
-		CemKoord = CementaMasina.GetComponent<RectTransform>().localPosition;
-		e46Koord = e46.GetComponent<RectTransform>().localPosition;
-		e61Koord = e61.GetComponent<RectTransform>().localPosition;
-		EskKoord = Eskavators.GetComponent<RectTransform>().localPosition;
-		polKoord = policija.GetComponent<RectTransform>().localPosition;
-		Trak1Koord = Traktors1.GetComponent<RectTransform>().localPosition;
-		Trak5Koord = Traktors5.GetComponent<RectTransform>().localPosition;
-		UgunsKoord = Ugunsdzeseji.GetComponent<RectTransform>().localPosition;
-    }
+	// Вспомогательный метод для получения машинки по индексу
+	private GameObject GetCarAtIndex(int index) {
+		switch (index) {
+		case 1:
+			return atkritumuMasina;
+		case 2:
+			return atraPalidziba;
+		case 3:
+			return autobuss;
+		case 4:
+			return b2;
+		case 5:
+			return CementaMasina;
+		case 6:
+			return e46;
+		case 7:
+			return e61;
+		case 8:
+			return Eskavators;
+		case 9:
+			return policija;
+		case 10:
+			return Traktors1;
+		case 11:
+			return Traktors5;
+		case 12:
+			return Ugunsdzeseji;
+		default:
+			return null;
+		}
+	}
 }
